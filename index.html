@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Quiz App</title>
+  </head>
+  <body>
+    <div class="overlay" id="overlay"></div>
+    
+    <img src="image/logogame.png" alt="logo" class="logo" />
+
+    <div class="quiz-container" id="quiz-container">
+      <div class="question-header" id="question-header">
+        <h1></h1>
+      </div>
+      <h2 id="correct_answer"></h2>
+      <div class="answer-btns" id="answer-btns">
+        <button id="choice-one"></button>
+        <button id="choice-two"></button>
+        <button id="choice-three"></button>
+        <button id="choice-four"></button>
+      </div>
+      <button id="submit-btn" class="submit-btn">Start a game</button>
+    </div>
+    <div class="result-container" id="result_container">
+      <img src="image/thankyou.png" alt="thankyou-img" />
+      <h1>Your score: <small id="score_box"></small></h1>
+      <button id="reload_btn">Play again</button>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 120vh;
+  overflow-x: hidden;
+  display: flex;
+  padding: 2rem 0rem ;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: #dedede;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23f19465' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M11 0l5 20H6l5-20zm42 31a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM0 72h40v4H0v-4zm0-8h31v4H0v-4zm20-16h20v4H20v-4zM0 56h40v4H0v-4zm63-25a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM53 41a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-30 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-28-8a5 5 0 0 0-10 0h10zm10 0a5 5 0 0 1-10 0h10zM56 5a5 5 0 0 0-10 0h10zm10 0a5 5 0 0 1-10 0h10zm-3 46a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM21 0l5 20H16l5-20zm43 64v-4h-4v4h-4v4h4v4h4v-4h4v-4h-4zM36 13h4v4h-4v-4zm4 4h4v4h-4v-4zm-4 4h4v4h-4v-4zm8-8h4v4h-4v-4z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.logo {
+  max-width: 400px;
+  margin-top: 2rem;
+}
+.quiz-container {
+  width: 60%;
+  padding: 2rem 3rem;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.question-header {
+  text-align: center;
+  color: #0000;
+}
+
+.question-header h1 {
+  font-size: 25px;
+  margin-top: 20px;
+  color: #000;
+}
+
+.answer-btns {
+  display: none;
+  grid-template-columns: repeat(2, 1fr);
+  grid-row: auto;
+  margin-top: 3rem;
+  gap: 3rem;
+}
+
+.answer-btns button {
+  position: relative;
+  border-radius: 100px;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 1.5rem 1rem;
+  border: none;
+  background-color: #ededed;
+}
+
+.answer-btns button::before {
+  content: "";
+  height: 100%;
+  border-radius: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  z-index: 0;
+  opacity: 0.3;
+  background-color: rgb(3, 138, 255);
+  transition: width 0.5s ease;
+}
+
+.answer-btns button:hover::before {
+  width: 100%;
+}
+
+.submit-btn {
+  position: absolute;
+  width: 300px;
+  padding: 1rem 2rem;
+  left: 50%;
+  bottom: -5rem;
+  cursor: pointer;
+  border-radius: 100px;
+  background-color: rgb(3, 138, 255);
+  transform: translate(-50%, -50%);
+  border: none;
+  font-size: 20px;
+  color: #ffff;
+  z-index: 3;
+}
+
+.submit-btn:hover {
+  opacity: 0.7;
+}
+
+.result-container {
+  width: 80vw;
+  top: 4rem;
+  position: absolute;
+  background-color: rgb(236, 236, 236);
+  flex-direction: column;
+  padding: 2rem 5rem;
+  font-size: 20px;
+  height: 80vh;
+  border-radius: 20px;
+  display: none;
+  z-index: 10;
+  color: #fff;
+ justify-content: center;
+  
+}
+.result-container img {
+ width: 40%;
+  height: 50%;
+  margin: 0 auto;
+
+}
+
+.result-container h1 {
+  text-align: center;
+  color:#1b1b1b
+}
+
+.result-container button {
+  margin-top: 1rem;
+  width: 30%;
+  background-color: rgba(11, 61, 100, 0.9);
+  height: 50px;
+  text-align: center;
+  border-radius: 50px;
+  border: none;
+  position: absolute;
+  left: 50%;
+  cursor: pointer;
+  bottom: 30px;
+  font-size: 15px;
+  color: #fff;
+  transform: translateX(-50%);
+}
+
+.result-container button:focus {
+  outline: none;
+}
+
+.result-container button:hover {
+  opacity: 0.9;
+}
+
+#correct_answer {
+  text-align: center;
+  font-size: 30px;
+}
+
+.overlay {
+  position: fixed;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  top: 0;
+  z-index: 2;
+  display: none;
+}
+
+@media screen and (max-width: 780px) {
+  body {
+    height: auto;
+  }
+  .answer-btns {
+    grid-template-columns: auto;
+    gap: 10px;
+  }
+
+  #question-header h1 {
+    font-size: 20px;
+  }
+
+  .submit-btn {
+    width: 200px;
+  }
+  .quiz-container {
+    padding: 2rem  .5rem;
+  }
+  .result-container  {
+    width: 50%;
+    height: 50vh;
+  }
+
+  .result-container img {
+    width: 100%;
+    height: 50%;
+  }
+  #result_container {
+    font-size: 1rem;
+  }
+  #correct_answer {
+    font-size: 18px;
+  }
+  
+}
