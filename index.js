@@ -49,6 +49,7 @@ async function getData() {
       resultContainer.style.display = "flex";
       overlay.style.display = "block";
       overlay.style.zIndex = 9;
+      overlay.style.backgroundColor="rgba(0,0,0,0.7)"
     } else {
     
       choicesContainer[index][3] = correctAnswerContainer[index];
