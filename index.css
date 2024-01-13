@@ -208,9 +208,6 @@ body {
   #reload_btn {
     width: 140px;
   }
-  .overlay {
-    z-index: 9;
-    background-color: rgba(0,0,0,0.7);
-  }
+
   
 }
