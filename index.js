@@ -15,7 +15,8 @@ const reloadBtn = document.querySelector("#reload_btn");
 const resultContainer = document.querySelector("#result_container");
 
 let index = 0;
-let selected = false;
+let isSelected = false;
+let score = 0;
 
 async function getData() {
   const questionContainer = [];
@@ -37,47 +38,60 @@ async function getData() {
   }
 
   submitBtn.addEventListener("click", () => {
-    answerBtnsContainer.style.display = "grid";
-    let score = 10 - showAllMistakesModal(mistakesContainer).length;
-    index++;
-    removeButtonBg();
-    overlay.style.display = "none";
-    correctAnswerBox.textContent = "";
-    submitBtn.textContent = "Next Question";
-    if (index >= 10) {
-      scoreBox.textContent = score;
-      resultContainer.style.display = "flex";
-      overlay.style.display = "block";
-      overlay.style.zIndex = 9;
-      overlay.style.backgroundColor="rgba(0,0,0,0.7)"
+    if (submitBtn.textContent === "Start a game") {
+      isSelected = true;
+    }
+    if (!isSelected) {
+      alert("Please answer the question");
     } else {
-    
-      choicesContainer[index][3] = correctAnswerContainer[index];
-      shuffle(choicesContainer[index]);
-      questionHeader.innerText = questionContainer[index];
-      choiceA.innerText = choicesContainer[index][0];
-      choiceB.innerText = choicesContainer[index][1];
-      choiceC.innerText = choicesContainer[index][2];
-      choiceD.innerText = choicesContainer[index][3];
+      answerBtnsContainer.style.display = "grid";
+      score++;
+      index++;
+      removeButtonBg();
 
-      showAllMistakesModal(mistakesContainer);
+      overlay.style.display = "none";
+      correctAnswerBox.textContent = "";
+      submitBtn.textContent = "Next Question";
 
-      answerBtns.forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          overlay.style.display = "block";
-          removeButtonBg();
-          btn.style.backgroundColor = "rgb(3, 138, 255)";
-          if (e.target.innerText === correctAnswerContainer[index]) {
-            correctAnswerBox.innerHTML = " &#9733; Your Correct &#9733;";
-            correctAnswerBox.style.color = "rgb(3, 138, 255)";
-          } else {
-            mistakesContainer.push(questionContainer[index]);
-            correctAnswerBox.textContent =
-              "Correct answer : " + correctAnswerContainer[index];
-            correctAnswerBox.style.color = "#880808";
-          }
+      if (index >= 10) {
+        scoreBox.textContent =
+          score - showAllMistakesModal(mistakesContainer).length;
+        resultContainer.style.display = "flex";
+        overlay.style.display = "block";
+        overlay.style.zIndex = 9;
+        overlay.style.backgroundColor = "rgba(0,0,0,0.7)";
+      } else {
+        isSelected = false;
+        choicesContainer[index][3] = correctAnswerContainer[index];
+        shuffle(choicesContainer[index]);
+        questionHeader.innerText = questionContainer[index];
+        choiceA.innerText = choicesContainer[index][0];
+        choiceB.innerText = choicesContainer[index][1];
+        choiceC.innerText = choicesContainer[index][2];
+        choiceD.innerText = choicesContainer[index][3];
+
+        showAllMistakesModal(mistakesContainer);
+
+        answerBtns.forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            isSelected = true;
+            overlay.style.display = "block";
+            removeButtonBg();
+            btn.style.backgroundColor = "rgb(3, 138, 255)";
+            if (e.target.innerText === correctAnswerContainer[index]) {
+              isSelected = true;
+              correctAnswerBox.innerHTML = " &#9733; Your Correct &#9733;";
+              correctAnswerBox.style.color = "rgb(3, 138, 255)";
+            } else {
+              mistakesContainer.push(questionContainer[index]);
+              isSelected = true;
+              correctAnswerBox.innerHTML =
+                "Correct answer : " + correctAnswerContainer[index];
+              correctAnswerBox.style.color = "#880808";
+            }
+          });
         });
-      });
+      }
     }
   });
 }
